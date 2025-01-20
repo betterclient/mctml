@@ -22,6 +22,7 @@ dependencies {
     modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
 
     include(implementation 'com.github.betterclient:jtml:88d18040d7')
+    include("org.jsoup:jsoup:1.18.3")
 }
 
 processResources {
