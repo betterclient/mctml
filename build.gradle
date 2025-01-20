@@ -21,7 +21,7 @@ dependencies {
     mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
     modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
 
-    include(implementation 'com.github.betterclient:jtml:88d18040d7')
+    include(implementation 'com.github.betterclient:jtml:4f32d118f3')
     include("org.jsoup:jsoup:1.18.3")
 }
 
