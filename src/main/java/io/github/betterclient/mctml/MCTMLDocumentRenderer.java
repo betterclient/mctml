@@ -70,4 +70,9 @@ public class MCTMLDocumentRenderer extends Screen {
 
         return super.charTyped(chr, modifiers);
     }
+
+    @Override
+    public boolean shouldCloseOnEsc() {
+        return this.screen.shouldCloseOnEsc();
+    }
 }

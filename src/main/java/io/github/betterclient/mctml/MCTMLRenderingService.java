@@ -1,7 +1,7 @@
 package io.github.betterclient.mctml;
 
 import com.mojang.blaze3d.systems.RenderSystem;
-import io.github.betterclient.jtml.api.KeyboardKey;
+import io.github.betterclient.jtml.api.event.KeyboardKey;
 import io.github.betterclient.jtml.internal.css.styles.TextDecoration;
 import io.github.betterclient.jtml.service.RenderingService;
 import net.minecraft.client.MinecraftClient;
@@ -17,7 +17,7 @@ import org.lwjgl.glfw.GLFW;
 public class MCTMLRenderingService implements RenderingService {
     public static final MCTMLRenderingService DEFAULT_FONT = new MCTMLRenderingService(null);
     private final TextRenderer renderer;
-    public final DrawContext context;
+    private final DrawContext context;
 
     public MCTMLRenderingService(DrawContext context) {
         this.context = context;
@@ -27,7 +27,9 @@ public class MCTMLRenderingService implements RenderingService {
     public int renderText(String text, int x, int y, int color, float size, TextDecoration decoration) {
         MutableText t = Text.literal(text);
         if (decoration.isUnderline()) t.setStyle(Style.EMPTY.withUnderline(true));
-        if (decoration.isStrikethrough()) t.setStyle(Style.EMPTY.withStrikethrough(true));
+        if (decoration.isStrikethrough()) t.setStyle(t.getStyle().withStrikethrough(true));
+        if (decoration.isItalic()) t.setStyle(t.getStyle().withItalic(true));
+        if (decoration.isBold()) t.setStyle(t.getStyle().withBold(true));
 
         this.context.getMatrices().push();
         this.context.getMatrices().translate(x, y, 1);
@@ -38,11 +40,16 @@ public class MCTMLRenderingService implements RenderingService {
 
         this.context.getMatrices().pop();
 
-        return (int) (this.renderer.getWidth(text) * (size / 9f));
+        return (int) (this.renderer.getWidth(t) * (size / 9f));
     }
 
-    public int width(String text) {
-        return this.renderer.getWidth(text);
+    public int width(String text, TextDecoration decoration) {
+        MutableText t = Text.literal(text);
+        if (decoration.isUnderline()) t.setStyle(Style.EMPTY.withUnderline(true));
+        if (decoration.isStrikethrough()) t.setStyle(t.getStyle().withStrikethrough(true));
+        if (decoration.isItalic()) t.setStyle(t.getStyle().withItalic(true));
+        if (decoration.isBold()) t.setStyle(t.getStyle().withBold(true));
+        return this.renderer.getWidth(t);
     }
 
     public void fill(float x, float y, float endX, float endY, int color) {
@@ -62,7 +69,6 @@ public class MCTMLRenderingService implements RenderingService {
         store = y;
         y = Math.min(y, endY);
         endY = Math.max(store, endY);
-        radius/=2;
 
         int n2;
         for (n2 = 0; n2 <= 90; n2 += 3) {
@@ -139,5 +145,22 @@ public class MCTMLRenderingService implements RenderingService {
 
     public String getClipboard() {
         return MinecraftClient.getInstance().keyboard.getClipboard();
+    }
+
+    boolean hasScissor = false;
+    @Override
+    public void startScissor(int x, int y, int width, int height) {
+        this.context.enableScissor(x, y, x + width, y + height);
+        hasScissor = true;
+    }
+
+    @Override
+    public void endScissor() {
+        if (hasScissor) this.context.disableScissor();
+    }
+
+    @Override
+    public void setClipboard(String text) {
+        MinecraftClient.getInstance().keyboard.setClipboard(text);
     }
 }

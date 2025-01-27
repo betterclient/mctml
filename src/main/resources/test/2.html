@@ -2,7 +2,7 @@
 <div class="container">
     <div class="left-table">
         <div class="cell number" id="hd">Headers</div>
-        <div class="cell number" id="cl">Clickers</div>
+        <div class="cell number" id="cl">Inputs</div>
         <div class="cell number" id="ot">Other</div>
     </div>
     <div class="right-content">
@@ -15,41 +15,77 @@
         <label>
             <textarea>Text Area!</textarea>
         </label>
+        <br>
+        <br>
+        <label>
+            <span>Password input: </span>
+            <input type="password">
+        </label>
+        <br>
+        <br>
+        <label>
+            <span>Number input: </span>
+            <input type="number">
+        </label>
     </div>
 </div>
 </body>
 
 <style>
-textarea {
-    width: 200px;
-    height: 50px;
-}
+    textarea {
+        width: 200px;
+        height: 50px;
+        background-color: #474747;
+        border-radius: 6px;
+        border: none;
+    }
 
-body {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
+    input{
+      background-color: #474747;
+      border-radius: 6px;
+      border: none;
+    }
 
-.container {
-  display: flex;
-  border: 2px solid maroon;
-  background-color: #333;
-}
+    button{
+      background-color: #b3b3b3;
+      border: none;
+      border-radius: 6px;
+      width: 60px;
+      height: 20px;
+      text-align: center;
+    }
 
-.cell {
-  border: 1px solid maroon;
-  padding: 10px;
-}
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #000000;
+      color: #0e7490;
+    }
 
-.cell.number {
-  width: 50px;
-  text-align: center;
-}
+    .container {
+      display: flex;
+      border: 1px solid #535353;
+      background-color: #252525;
+      border-radius: 10px;
+    }
 
-.right-content {
-  flex: 1;
-  padding: 20px;
-  color: maroon;
-}
+    .cell {
+      padding: 10px;
+      margin: 5px;
+      border-radius: 7px;
+      background-color: #203f43;
+      color: #ffff;
+    }
+
+    .cell.number {
+      width: 50px;
+      text-align: center;
+    }
+
+    .right-content {
+      flex: 1;
+      padding: 20px;
+      color: #aab1b3;
+    }
 </style>

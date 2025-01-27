@@ -21,4 +21,9 @@ public class MCTMLService implements JTMLService {
     public void openScreen(DocumentScreen documentScreen) {
         MinecraftClient.getInstance().setScreen(new MCTMLDocumentRenderer(documentScreen));
     }
+
+    @Override
+    public DocumentScreen getDocument() {
+        return MinecraftClient.getInstance().currentScreen instanceof MCTMLDocumentRenderer doc ? doc.screen : null;
+    }
 }

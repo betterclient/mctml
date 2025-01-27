@@ -1,8 +1,8 @@
-<body>
+<body onload="io.github.betterclient.mctml.test.Loader.run()">
 <div class="container">
     <div class="left-table">
         <div class="cell number" id="hd">Headers</div>
-        <div class="cell number" id="cl">Clickers</div>
+        <div class="cell number" id="cl">Inputs</div>
         <div class="cell number" id="ot">Other</div>
     </div>
     <div class="right-content">
@@ -17,31 +17,37 @@
 </body>
 
 <style>
-body {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #000000;
+      color: #0e7490;
+    }
 
-.container {
-  display: flex;
-  border: 2px solid maroon;
-  background-color: #333;
-}
+    .container {
+      display: flex;
+      border: 1px solid #535353;
+      background-color: #252525;
+      border-radius: 10px;
+    }
 
-.cell {
-  border: 1px solid maroon;
-  padding: 10px;
-}
+    .cell {
+      padding: 10px;
+      margin: 5px;
+      border-radius: 7px;
+      background-color: #203f43;
+      color: #ffff;
+    }
 
-.cell.number {
-  width: 50px;
-  text-align: center;
-}
+    .cell.number {
+      width: 50px;
+      text-align: center;
+    }
 
-.right-content {
-  flex: 1;
-  padding: 20px;
-  color: maroon;
-}
+    .right-content {
+      flex: 1;
+      padding: 20px;
+      color: #aab1b3;
+    }
 </style>

@@ -1,6 +1,6 @@
 {
   "required": true,
-  "package": "io.github.betterclient.mctml.test",
+  "package": "io.github.betterclient.mctml.test.mixin",
   "plugin": "io.github.betterclient.mctml.test.TestMixinPlugin",
   "mixins": [
     "MixinTitleScreen"
